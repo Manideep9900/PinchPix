@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PinchPix — Gesture Photo Puzzle</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Pinch<span class="brand-accent">Pix</span></span>
+    </div>
+    <div class="status-pill">
+      <span id="statusDot" class="status-dot"></span>
+      <span id="statusText">starting camera…</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section id="stage" class="stage">
+      <video id="webcam" playsinline autoplay muted></video>
+      <canvas id="sceneCanvas"></canvas>
+
+      <div id="progressBadge" class="progress-chip">
+        <span id="progressText">0 / 9 pieces placed</span>
+      </div>
+
+      <div class="gesture-legend">
+        <div class="legend-item">
+          <span class="legend-swatch pinch"></span>
+          <span>Pinch with both hands to frame &amp; capture</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-swatch drag"></span>
+          <span>Pinch a piece to drag it</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-swatch fist"></span>
+          <span>Hold a fist to save or reset · or use mouse/touch &amp; keys C H S R</span>
+        </div>
+      </div>
+
+      <div class="stage-controls">
+        <button type="button" id="captureBtn" class="chip-btn">📸 Capture (C)</button>
+        <button type="button" id="hintBtn" class="chip-btn">💡 Hint (H)</button>
+        <button type="button" id="soundBtn" class="chip-btn">🔊 Sound on</button>
+      </div>
+
+      <div id="loadingOverlay" class="loading-overlay">
+        <div class="loader-ring"></div>
+        <div class="loader-text" id="loaderText">loading HandLandmarker model…</div>
+        <button type="button" id="loaderRetry" class="loader-retry hidden">Retry</button>
+      </div>
+
+      <div id="errorBanner" class="error-banner"></div>
+    </section>
+
+    <aside class="gallery-panel">
+      <div class="gallery-header">
+        <h2>Snapshots</h2>
+        <span id="galleryCount" class="gallery-count">0 / 3</span>
+      </div>
+
+      <div id="stripCompleteMsg" class="strip-complete">
+        Strip complete — download it, or reset to keep playing.
+      </div>
+
+      <div id="galleryStrip" class="gallery-grid">
+        <div class="gallery-empty" id="galleryEmpty">
+          Your finished puzzles<br />will show up here.
+        </div>
+      </div>
+
+      <div class="gallery-actions">
+        <button type="button" id="downloadStripBtn" class="btn btn-primary" disabled>Download strip</button>
+        <button type="button" id="resetAllBtn" class="btn btn-ghost-danger">Reset everything</button>
+      </div>
+    </aside>
+  </main>
+
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
